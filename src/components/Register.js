@@ -3,6 +3,7 @@ import validator from "validator";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import _ from 'lodash';
+import API_BASE_URL from '../config'
 
 export default function Register({ registerIn }) {
   const navigate = useNavigate();
@@ -49,11 +50,11 @@ export default function Register({ registerIn }) {
 
     if (Object.keys(errors).length === 0) {
       try {
-        const response = await axios.post('http://localhost:5000/users/register', formData);
+        const response = await axios.post(`${API_BASE_URL}/users/register`, formData); // Updated URL
         console.log(response.data);
         registerIn();
         navigate('/login');
-      } catch (err) {
+      }catch (err) {
         console.log(err);
         setForm({ ...form, serverErrors: err.response?.data?.errors || [err.message] });
       }

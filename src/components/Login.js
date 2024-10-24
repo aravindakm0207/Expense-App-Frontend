@@ -4,7 +4,7 @@ import * as yup from "yup"
 import { useNavigate } from "react-router-dom"
 import {useState}from "react"
 import {useAuth}from "../context/AuthContext"
-
+import API_BASE_URL from '../config'
 
 const loginValidationSchema=yup.object({
     email:yup.string().required().email(),
@@ -23,28 +23,29 @@ export default function Login ({loggedIn}){
         },
         validateOnChange:false,
         validationSchema:loginValidationSchema,
-        onSubmit:async(values)=>{
-            try{
-                const response=await axios.post("http://localhost:5000/users/login",values)
-                localStorage.setItem("token",response.data.token)
-                loggedIn()
-                 console.log(response.data)
-                const userResponse=await axios.get("http://localhost:5000/users/account",{
-                    headers:{
-                        Authorization:localStorage.getItem("token")
-                    }
-                    
-                })
-                console.log("userResponse",userResponse.data)
-                dispatch({type:"LOGIN",payload:{account:userResponse.data}})
+        onSubmit: async (values) => {
+            try {
+                const response = await axios.post(`${API_BASE_URL}/users/login`, values); // Updated URL
+                localStorage.setItem("token", response.data.token);
+                loggedIn();
+                console.log(response.data);
                 
-                 navigate("/")
-            }
-            catch(e){
-                setServerErrors(e.response.data.errors)
+                const userResponse = await axios.get(`${API_BASE_URL}/users/account`, { // Updated URL
+                    headers: {
+                        Authorization: localStorage.getItem("token")
+                    }
+                });
+                
+                console.log("userResponse", userResponse.data);
+                dispatch({ type: "LOGIN", payload: { account: userResponse.data } });
+                
+                navigate("/");
+            } catch (e) {
+                setServerErrors(e.response?.data?.errors || "An error occurred. Please try again.");
             }
         }
-    })
+    });
+
     return (
         <div>
            <h1>Login Here</h1>

@@ -117,6 +117,7 @@ export const setShowCategoryId = (id) => ({
 
 import axios from 'axios';
 import { toastifySuccess, toastifyError } from '../utils/toastify';
+import API_BASE_URL from '../config'
 
 export const SET_CATEGORIES = "SET_CATEGORIES";
 export const REMOVE_CATEGORY = "REMOVE_CATEGORY";
@@ -131,7 +132,7 @@ const token = localStorage.getItem("token");
 export const fetchCategories = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get('http://localhost:5000/all-categories', {
+      const response = await axios.get(`${API_BASE_URL}/all-categories`, { // Updated URL
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -151,7 +152,7 @@ const setCategories = (categories) => ({
 export const startRemoveCategory = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete(`http://localhost:5000/removing-category/${id}`, {
+      const response = await axios.delete(`${API_BASE_URL}/removing-category/${id}`, { // Updated URL
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -172,7 +173,7 @@ const removeCategory = (id) => ({
 export const startAddCategory = (formData, resetForm) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post('http://localhost:5000/create-category', formData, {
+      const response = await axios.post(`${API_BASE_URL}/create-category`, formData, { // Updated URL
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -201,7 +202,7 @@ const setErrors = (errors) => ({
 export const startEditCategory = (id, formData, toggle) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`http://localhost:5000/update-category/${id}`, formData, {
+      const response = await axios.put(`${API_BASE_URL}/update-category/${id}`, formData, { // Updated URL
         headers: {
           Authorization: `Bearer ${token}`,
         },

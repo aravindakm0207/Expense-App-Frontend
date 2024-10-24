@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { toastifySuccess, toastifyError } from '../utils/toastify';
+import API_BASE_URL from '../config'
 
 // Action Types
 export const SET_EXPENSES = "SET_EXPENSES";
@@ -17,7 +18,7 @@ const token = localStorage.getItem("token");
 export const startGetExpenses = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get('http://localhost:5000/all-expenses', {
+      const response = await axios.get(`${API_BASE_URL}/all-expenses`, { // Updated URL
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -38,7 +39,7 @@ const setExpenses = (expenses) => {
 export const startRemoveExpense = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete(`http://localhost:5000/remove-expense/${id}`, {
+      const response = await axios.delete(`${API_BASE_URL}/remove-expense/${id}`, { // Updated URL
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -86,7 +87,7 @@ const addExpense = (expense) => {
 export const startEditExpense = (id, formData, toggle) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`http://localhost:5000/update-expense/${id}`, formData, {
+      const response = await axios.put(`${API_BASE_URL}/update-expense/${id}`, formData, { // Updated URL
         headers: {
           Authorization: `Bearer ${token}`,
         },
