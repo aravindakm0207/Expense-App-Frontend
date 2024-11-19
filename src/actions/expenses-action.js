@@ -62,7 +62,7 @@ const removeExpense = (id) => {
 export const startAddExpense = (formData, resetForm) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post('${API_BASE_URL}/create-expenses', formData, {
+      const response = await axios.post(`${API_BASE_URL}/create-expenses`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
