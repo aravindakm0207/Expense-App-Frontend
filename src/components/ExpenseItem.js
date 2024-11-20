@@ -4,7 +4,7 @@ import { startRemoveExpense, setEditExpenseId } from '../actions/expenses-action
 
 export default function ExpenseItem(props) {
   const dispatch = useDispatch();
-  const { id, expenseDate, amount, description } = props;
+  const { id, expenseDate, amount, description ,person} = props;
 
   const handleRemove = () => {
     const userConfirm = window.confirm("Are you sure?");
@@ -35,5 +35,6 @@ ExpenseItem.propTypes = {
   id: PropTypes.string.isRequired,
   expenseDate: PropTypes.string.isRequired,
   amount: PropTypes.number.isRequired,
-  description: PropTypes.string.isRequired
+  description: PropTypes.string.isRequired,
+  person: PropTypes.string.isRequired
 };
