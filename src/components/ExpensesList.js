@@ -15,6 +15,7 @@ export default function ExpensesList(props) {
                         expenseDate={ele.expenseDate} 
                         amount={ele.amount} 
                         description={ele.description} 
+                        person={ele.person}
                     />
                 ))}
             </ul>
