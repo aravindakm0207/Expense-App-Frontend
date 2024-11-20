@@ -4,7 +4,7 @@ import { startRemoveExpense, setEditExpenseId } from '../actions/expenses-action
 
 export default function ExpenseItem(props) {
   const dispatch = useDispatch();
-  const { id, expenseDate, amount, description ,person} = props;
+  const { id, expenseDate, amount, description, person } = props;
 
   const handleRemove = () => {
     const userConfirm = window.confirm("Are you sure?");
@@ -22,7 +22,7 @@ export default function ExpenseItem(props) {
       <div><strong>Date:</strong> {new Date(expenseDate).toLocaleDateString()}</div>
       <div><strong>Amount:</strong> ${amount}</div>
       <div><strong>Description:</strong> {description}</div>
-      <div><strong>person</strong> {person}</div>
+      <div><strong>Person:</strong> {person}</div> {/* Fixed here */}
       <div className="btn-group float-end">
         <button onClick={handleEdit} className='btn btn-outline-secondary'>edit</button>
         <button onClick={handleRemove} className='btn btn-outline-danger'>remove</button>
@@ -36,5 +36,6 @@ ExpenseItem.propTypes = {
   expenseDate: PropTypes.string.isRequired,
   amount: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
-  person: PropTypes.string.isRequired
+  person: PropTypes.string.isRequired, // Ensure person is marked as required
 };
+
