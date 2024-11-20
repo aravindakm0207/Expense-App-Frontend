@@ -22,6 +22,7 @@ export default function ExpenseItem(props) {
       <div><strong>Date:</strong> {new Date(expenseDate).toLocaleDateString()}</div>
       <div><strong>Amount:</strong> ${amount}</div>
       <div><strong>Description:</strong> {description}</div>
+      <div><strong>person</strong> {description}</div>
       <div className="btn-group float-end">
         <button onClick={handleEdit} className='btn btn-outline-secondary'>edit</button>
         <button onClick={handleRemove} className='btn btn-outline-danger'>remove</button>
