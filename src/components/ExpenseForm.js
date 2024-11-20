@@ -52,7 +52,7 @@ export default function ExpenseForm({ id, toggle }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = { expenseDate, amount, description, categoryId };
+    const formData = { expenseDate, amount, description, categoryId,person };
     const errors = runClientValidation();
 
     if (Object.keys(errors).length === 0) {
@@ -130,7 +130,7 @@ export default function ExpenseForm({ id, toggle }) {
 
         <div className="form-group">
           <label htmlFor='person' className='form-label'>
-            Description
+            Person
           </label>
           <input
             type="text"
