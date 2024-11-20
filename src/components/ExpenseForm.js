@@ -15,6 +15,7 @@ export default function ExpenseForm({ id, toggle }) {
   const [expenseDate, setExpenseDate] = useState(expense ? expense.expenseDate : '');
   const [amount, setAmount] = useState(expense ? expense.amount : '');
   const [description, setDescription] = useState(expense ? expense.description : '');
+  const[person,setPerson]=useState(expense?expense.person : '')
   const [categoryId, setCategoryId] = useState(expense ? expense.categoryId : '');
   const [clientErrors, setClientErrors] = useState({});
 
@@ -27,6 +28,7 @@ export default function ExpenseForm({ id, toggle }) {
       setExpenseDate(expense.expenseDate);
       setAmount(expense.amount);
       setDescription(expense.description);
+      setPerson(expense.person);
       setCategoryId(expense.categoryId);
     }
   }, [expense]);
@@ -61,6 +63,7 @@ export default function ExpenseForm({ id, toggle }) {
           setExpenseDate('');
           setAmount('');
           setDescription('');
+          setPerson('');
           setCategoryId('');
           setClientErrors({});
         }));
@@ -123,6 +126,24 @@ export default function ExpenseForm({ id, toggle }) {
           />
           {clientErrors.description && <p className="text-danger">{clientErrors.description}</p>}
         </div>
+
+
+        <div className="form-group">
+          <label htmlFor='person' className='form-label'>
+            Description
+          </label>
+          <input
+            type="text"
+            id="person"
+            value={person}
+            onChange={(e) => setPerson(e.target.value)}
+            className="form-control"
+          />
+          
+        </div>
+
+
+
         <div className="form-group">
           <label htmlFor='category' className='form-label'>
             Category
