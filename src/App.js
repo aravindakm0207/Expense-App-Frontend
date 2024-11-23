@@ -109,6 +109,8 @@ import PrivateRoute from './components/PrivateRoute';
 import { useAuth } from './context/AuthContext';
 import { useEffect } from 'react';
 import axios from 'axios';
+import Projects from './components/Projects';
+import Employees from './components/Employees';
 import API_BASE_URL from './config'
 function App() {
   const { user, dispatch } = useAuth();
@@ -126,7 +128,7 @@ function App() {
       const token = localStorage.getItem("token");
       if (token) {
         try {
-          const response = await axios.get('${API_BASE_URL}/users/account', {
+          const response = await axios.get(`${API_BASE_URL}/users/account`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -163,6 +165,8 @@ function App() {
               <Link to="/account">Account</Link> |
               <Link to="/categories">Categories</Link> |
               <Link to="/expenses">Expenses</Link> | {/* Add Expenses link */}
+              <Link to="/projects">Projects</Link> |
+              <Link to="/employees">Employees</Link> |
               <Link to="/" onClick={handleLogout}>Logout</Link>
             </>
           )}
@@ -187,6 +191,21 @@ function App() {
               <ExpensesContainer />
             </PrivateRoute>
           } />
+
+
+
+          <Route path="/employees" element={
+            <PrivateRoute>
+              <Employees />
+            </PrivateRoute>
+          } />
+
+          <Route path="/projects" element={
+            <PrivateRoute>
+              <Projects />
+            </PrivateRoute>
+          } />
+
         </Routes>
 
         <ToastContainer position='top-center' />
